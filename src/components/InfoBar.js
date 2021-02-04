@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
-import { useLocation } from 'wouter'
+import { useHistory } from 'react-router-dom'
 import Icon from './Icons/Icons'
 import Clipboard from 'clipboard'
 
 export default function InfoBar({ room }) {
-  const [, setLocation] = useLocation()
+  const history = useHistory()
+
   useEffect(() => {
     new Clipboard('.btn')
   }, [])
@@ -21,7 +22,7 @@ export default function InfoBar({ room }) {
         </button>
       </div>
       <div className="rightInnerContainer">
-        <div onClick={() => setLocation('/')}>
+        <div onClick={() => history.push('/')}>
           <Icon type="closeIcon" />
         </div>
       </div>

@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
-import { useLocation } from 'wouter'
+import { useHistory } from 'react-router-dom'
 import { useTitle } from '../hooks/useTitle'
 
 export default function Join() {
   const [name, setName] = useState('')
   const [room, setRoom] = useState('')
-  const [, setLocation] = useLocation()
+  const history = useHistory()
+
   useTitle(`WhatChat`)
+
   return (
     <div className="joinOuterContainer">
       <div className="joinInnerContainer">
         <form
           onSubmit={(e) => {
             e.preventDefault()
-            setLocation(`/chat/${room}/${name}`)
+            history.push(`/chat?room=${room}&name=${name}`)
           }}
         >
           <h1 className="title">What Chat</h1>
@@ -24,7 +26,7 @@ export default function Join() {
               type="text"
               placeholder="Name"
               className="joinInput"
-              onChange={(e) => setName(e.currentTarget.value)}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div>

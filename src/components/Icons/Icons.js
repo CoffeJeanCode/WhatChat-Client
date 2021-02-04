@@ -1,11 +1,13 @@
 import React from 'react'
+import closeIcon from '../../assets/closeIcon.png'
+import onlineIcon from '../../assets/onlineIcon.png'
 
 const IconType = ({ type }) => {
   switch (type) {
     case 'closeIcon':
-      return <img src="/closeIcon.png" alt="icon" />
+      return <img src={closeIcon} alt="icon" />
     case 'onlineIcon':
-      return <img src="/onlineIcon.png" alt="icon" />
+      return <img src={onlineIcon} alt="icon" />
   }
 }
 

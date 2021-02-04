@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
-import io from 'socket.io-client'
+
+import queryString from 'query-string'
 
 import InfoBar from '../components/InfoBar'
 import Input from '../components/Input'
@@ -8,30 +9,34 @@ import TextContainer from '../components/TextContainer'
 
 import notification from '../assets/notification.mp3'
 import { useTitle } from '../hooks/useTitle'
+import { useHistory, useLocation } from 'react-router-dom'
+import { useStore } from '../store'
 
-let socket
-
-const ENDPOINT = 'https://chattie-sockets.herokuapp.com/'
-
-export default function Chat({ params }) {
+export default function Chat() {
+  const [{ sockets: socket }] = useStore()
   const [name, setName] = useState('')
   const [room, setRoom] = useState('')
   const [message, setMessage] = useState('')
   const [users, setUsers] = useState([])
   const [messages, setMessages] = useState([])
   const notificationRef = useRef(null)
-  useTitle(`${params.name} | WhatChat`)
+  const history = useHistory()
+  const { search } = useLocation()
+  const queryParams = queryString.parse(search)
+
+  useTitle(`${room} | WhatChat`)
 
   useEffect(() => {
-    socket = io(ENDPOINT)
-
-    const { name, room } = params
+    const { room, name } = queryParams
 
     setRoom(room)
     setName(name)
 
     socket.emit('join', { name, room }, (error) => {
-      error && alert(error)
+      if (error) {
+        alert(error)
+        history.push('/')
+      }
     })
     notificationRef.current.volume = 50 / 100
 
