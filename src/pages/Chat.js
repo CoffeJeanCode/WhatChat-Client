@@ -25,7 +25,7 @@ export default function Chat() {
   const { search } = useLocation()
   const queryParams = queryString.parse(search)
 
-  useTitle(`${room} | WhatChat`)
+  useTitle(`${room.toUpperCase()} | WhatChat`)
 
   React.useEffect(() => {
     const { room, name } = queryParams
