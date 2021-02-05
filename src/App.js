@@ -6,8 +6,7 @@ import Join from './pages/Join'
 import Chat from './pages/Chat'
 import { useStore } from './store'
 
-// const ENDPOINTx = 'https://chattie-sockets.herokuapp.com/'
-const ENDPOINT = 'http://localhost:4000/'
+const ENDPOINT = 'https://chattie-sockets.herokuapp.com/'
 
 function App() {
   const [, dispatch] = useStore()
