@@ -2,7 +2,7 @@
   "name": "client",
   "scripts": {
     "dev": "webpack serve",
-    "build": "webpack build",
+    "build": "webpack build --config webpack.config.js",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "prettier --check \"src/**/*.{js,jsx}\""
   },
