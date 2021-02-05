@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import * as React from 'react'
 
 import queryString from 'query-string'
 
@@ -13,20 +13,21 @@ import { useHistory, useLocation } from 'react-router-dom'
 import { useStore } from '../store'
 
 export default function Chat() {
+  const [name, setName] = React.useState('')
+  const [room, setRoom] = React.useState('')
+  const [message, setMessage] = React.useState('')
+  const [users, setUsers] = React.useState([])
+  const [messages, setMessages] = React.useState([])
+  const notificationRef = React.useRef(null)
+
   const [{ sockets: socket }] = useStore()
-  const [name, setName] = useState('')
-  const [room, setRoom] = useState('')
-  const [message, setMessage] = useState('')
-  const [users, setUsers] = useState([])
-  const [messages, setMessages] = useState([])
-  const notificationRef = useRef(null)
   const history = useHistory()
   const { search } = useLocation()
   const queryParams = queryString.parse(search)
 
   useTitle(`${room} | WhatChat`)
 
-  useEffect(() => {
+  React.useEffect(() => {
     const { room, name } = queryParams
 
     setRoom(room)
@@ -54,6 +55,8 @@ export default function Chat() {
     socket.on('roomData', ({ users }) => {
       setUsers(users)
     })
+
+    return () => socket.disconnect()
   }, [])
 
   const sendMessage = (e) => {

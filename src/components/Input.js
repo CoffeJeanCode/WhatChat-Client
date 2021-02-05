@@ -1,7 +1,7 @@
-import React from 'react'
+import * as React from 'react'
 
-export default function Input({ message, setMessage, sendMessage }) {
-  const handleMessageValue = ({ currentTarget: { value } }) => setMessage(value)
+function Input({ message, setMessage, sendMessage }) {
+  const handleMessageValue = ({ target: { value } }) => setMessage(value)
 
   const handleSendMessage = (e) => {
     e.preventDefault()
@@ -23,3 +23,8 @@ export default function Input({ message, setMessage, sendMessage }) {
     </form>
   )
 }
+
+export default React.memo(
+  Input,
+  (preProps, nextProps) => preProps === nextProps,
+)

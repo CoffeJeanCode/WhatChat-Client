@@ -1,14 +1,24 @@
-import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import * as React from 'react'
 import Icon from './Icons/Icons'
 import Clipboard from 'clipboard'
 
-export default function InfoBar({ room }) {
-  const history = useHistory()
+import { useHistory } from 'react-router-dom'
+import { useStore } from '../store'
 
-  useEffect(() => {
-    new Clipboard('.btn')
+function InfoBar({ room }) {
+  const history = useHistory()
+  const [{ sockets: socket }] = useStore()
+
+  React.useEffect(() => {
+    const clip = new Clipboard('.btn')
+
+    return () => clip && clip.destroy()
   }, [])
+
+  const handleExit = () => {
+    socket.disconnect()
+    history.push('/')
+  }
 
   return (
     <div className="infoBar">
@@ -22,10 +32,12 @@ export default function InfoBar({ room }) {
         </button>
       </div>
       <div className="rightInnerContainer">
-        <div onClick={() => history.push('/')}>
+        <div onClick={handleExit}>
           <Icon type="closeIcon" />
         </div>
       </div>
     </div>
   )
 }
+
+export default React.memo(InfoBar)

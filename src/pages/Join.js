@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useTitle } from '../hooks/useTitle'
 
@@ -6,6 +6,14 @@ export default function Join() {
   const [name, setName] = useState('')
   const [room, setRoom] = useState('')
   const history = useHistory()
+
+  const handleChangeName = useCallback((e) => {
+    setName(e.target.value)
+  }, [])
+
+  const handleChangeRoom = useCallback((e) => {
+    setRoom(e.target.value)
+  }, [])
 
   useTitle(`WhatChat`)
 
@@ -26,7 +34,7 @@ export default function Join() {
               type="text"
               placeholder="Name"
               className="joinInput"
-              onChange={(e) => setName(e.target.value)}
+              onChange={handleChangeName}
             />
           </div>
           <div>
@@ -35,7 +43,7 @@ export default function Join() {
               type="text"
               placeholder="Room"
               className="joinInput mt-20"
-              onChange={(e) => setRoom(e.target.value)}
+              onChange={handleChangeRoom}
             />
           </div>
           <button className="button mt-20" type="submit">

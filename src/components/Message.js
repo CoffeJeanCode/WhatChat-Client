@@ -1,13 +1,13 @@
-import React from "react";
-import ReactEmoji from "react-emoji";
+import React from 'react'
+import ReactEmoji from 'react-emoji'
 
-export default function Message({ message: { user, text }, name }) {
-  let isSendByCurrentUser = false;
+function Message({ message: { user, text }, name }) {
+  let isSendByCurrentUser = false
 
-  const trimedName = name.trim().toLowerCase();
+  const trimedName = name.trim().toLowerCase()
 
   if (user === trimedName) {
-    isSendByCurrentUser = true;
+    isSendByCurrentUser = true
   }
 
   return isSendByCurrentUser ? (
@@ -24,5 +24,7 @@ export default function Message({ message: { user, text }, name }) {
       </div>
       <p className="sentText pl-10">{user}</p>
     </div>
-  );
+  )
 }
+
+export default React.memo(Message, () => true)

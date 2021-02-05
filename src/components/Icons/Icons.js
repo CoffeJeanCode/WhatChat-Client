@@ -1,6 +1,6 @@
-import React from 'react'
-import closeIcon from '../../assets/closeIcon.png'
-import onlineIcon from '../../assets/onlineIcon.png'
+import * as React from 'react'
+import closeIcon from '../../assets/img/closeIcon.png'
+import onlineIcon from '../../assets/img/onlineIcon.png'
 
 const IconType = ({ type }) => {
   switch (type) {

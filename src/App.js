@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import io from 'socket.io-client'
 
 import Join from './pages/Join'
@@ -13,13 +13,17 @@ function App() {
   const [, dispatch] = useStore()
 
   React.useEffect(() => {
-    dispatch({ type: 'SET_SOCKETS', payload: io(ENDPOINT) })
+    const socket = io(ENDPOINT)
+    dispatch({ type: 'SET_SOCKETS', payload: socket })
   }, [])
+
   return (
     <div className="App">
       <Router>
-        <Route path="/" component={Join} />
-        <Route path="/chat" component={Chat} />
+        <Switch>
+          <Route exact path="/" component={Join} />
+          <Route path="/chat" component={Chat} />
+        </Switch>
       </Router>
     </div>
   )

@@ -1,4 +1,5 @@
-import React from 'react'
+import * as React from 'react'
+import Icon from './Icons/Icons'
 
 const TextContainer = ({ users }) => (
   <section className="textContainer">
@@ -10,7 +11,7 @@ const TextContainer = ({ users }) => (
             {users.map(({ name }) => (
               <div key={name} className="activeItem">
                 {name}
-                <img alt="Online" src="/onlineIcon.png" />
+                <Icon type="onlineIcon" />
               </div>
             ))}
           </h2>
