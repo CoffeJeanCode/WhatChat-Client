@@ -1,6 +1,7 @@
 import * as React from 'react'
-
 import queryString from 'query-string'
+import { useHistory, useLocation } from 'react-router-dom'
+import io from 'socket.io-client'
 
 import InfoBar from '../components/InfoBar'
 import Input from '../components/Input'
@@ -9,8 +10,11 @@ import TextContainer from '../components/TextContainer'
 
 import notification from '../assets/notification.mp3'
 import { useTitle } from '../hooks/useTitle'
-import { useHistory, useLocation } from 'react-router-dom'
-import { useStore } from '../store'
+
+const ENDPOINT =
+  process.env.NODE_ENV === 'production'
+    ? 'https://chattie-sockets.herokuapp.com/'
+    : 'http://localhost:4000'
 
 export default function Chat() {
   const [name, setName] = React.useState('')
@@ -18,14 +22,13 @@ export default function Chat() {
   const [message, setMessage] = React.useState('')
   const [users, setUsers] = React.useState([])
   const [messages, setMessages] = React.useState([])
+  const [socket] = React.useState(() => io(ENDPOINT))
   const notificationRef = React.useRef(null)
-
-  const [{ sockets: socket }] = useStore()
   const history = useHistory()
   const { search } = useLocation()
   const queryParams = queryString.parse(search)
 
-  useTitle(`${room.toUpperCase()} | WhatChat`)
+  useTitle(`${room.toLocaleLowerCase()} | WhatChat`)
 
   React.useEffect(() => {
     const { room, name } = queryParams
@@ -55,8 +58,6 @@ export default function Chat() {
     socket.on('roomData', ({ users }) => {
       setUsers(users)
     })
-
-    return () => socket.disconnect()
   }, [])
 
   const sendMessage = (e) => {
@@ -71,7 +72,7 @@ export default function Chat() {
   return (
     <div className="outerContainer">
       <div className="container">
-        <InfoBar room={room} />
+        <InfoBar room={room} socket={socket} />
         <Messages messages={messages} name={name} />
         <Input
           message={message}

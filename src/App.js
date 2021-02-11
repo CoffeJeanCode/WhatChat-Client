@@ -1,28 +1,20 @@
 import * as React from 'react'
+import Loader from './components/Loader'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import io from 'socket.io-client'
 
-import Join from './pages/Join'
-import Chat from './pages/Chat'
-import { useStore } from './store'
-
-const ENDPOINT = 'https://chattie-sockets.herokuapp.com/'
+const Join = React.lazy(() => import('./pages/Join'))
+const Chat = React.lazy(() => import('./pages/Chat'))
 
 function App() {
-  const [, dispatch] = useStore()
-
-  React.useEffect(() => {
-    const socket = io(ENDPOINT)
-    dispatch({ type: 'SET_SOCKETS', payload: socket })
-  }, [])
-
   return (
     <div className="App">
       <Router>
-        <Switch>
-          <Route exact path="/" component={Join} />
-          <Route path="/chat" component={Chat} />
-        </Switch>
+        <React.Suspense fallback={<Loader />}>
+          <Switch>
+            <Route exact path="/" component={Join} />
+            <Route path="/chat" component={Chat} />
+          </Switch>
+        </React.Suspense>
       </Router>
     </div>
   )

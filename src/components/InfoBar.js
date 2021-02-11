@@ -3,21 +3,19 @@ import Icon from './Icons/Icons'
 import Clipboard from 'clipboard'
 
 import { useHistory } from 'react-router-dom'
-import { useStore } from '../store'
 
-function InfoBar({ room }) {
+function InfoBar({ room, socket }) {
   const history = useHistory()
-  const [{ sockets: socket }] = useStore()
 
   React.useEffect(() => {
     const clip = new Clipboard('.btn')
 
-    return () => clip && clip.destroy()
+    return () => clip.destroy()
   }, [])
 
   const handleExit = () => {
-    socket.disconnect()
     history.push('/')
+    socket.disconnect()
   }
 
   return (

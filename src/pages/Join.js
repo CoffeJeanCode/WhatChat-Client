@@ -15,7 +15,7 @@ export default function Join() {
     setRoom(e.target.value)
   }, [])
 
-  useTitle(`WhatChat`)
+  useTitle('WhatChat')
 
   return (
     <div className="joinOuterContainer">

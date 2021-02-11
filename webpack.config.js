@@ -1,13 +1,14 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
-const mode = process.env.NODE_ENV
+const mode =
+  process.env.NODE_ENV === 'production' ? 'production' : 'development'
 
 module.exports = {
   entry: path.join(__dirname, 'src', 'index.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[chunk].bundle.js',
+    filename: 'bundle.js',
   },
   mode,
   module: {
@@ -37,5 +38,10 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 3000,
+  },
+  optimization: {
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
+    splitChunks: false,
   },
 }
