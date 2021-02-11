@@ -12,9 +12,9 @@ import notification from '../assets/notification.mp3'
 import { useTitle } from '../hooks/useTitle'
 
 const ENDPOINT =
-  process.env.NODE_ENV === 'production'
-    ? 'https://chattie-sockets.herokuapp.com/'
-    : 'http://localhost:4000'
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:4000'
+    : 'https://chattie-sockets.herokuapp.com/'
 
 export default function Chat() {
   const [name, setName] = React.useState('')
