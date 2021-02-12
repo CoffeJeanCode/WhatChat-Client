@@ -12,10 +12,7 @@ import notification from '../assets/notification.mp3'
 import { useTitle } from '../hooks/useTitle'
 import { encrypt } from '../utils/encrypt'
 
-const ENDPOINT =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:4000'
-    : 'https://chattie-sockets.herokuapp.com/'
+const ENDPOINT = process.env.SOCKET_URL
 
 export default function Chat() {
   const [name, setName] = React.useState('')
@@ -63,9 +60,9 @@ export default function Chat() {
 
   const sendMessage = (e) => {
     e.preventDefault()
-    const encryptedMessage = encrypt(message, room)
 
     if (message) {
+      const encryptedMessage = encrypt(message, room.toLowerCase().trim())
       socket.emit('sendMessage', encryptedMessage)
       setMessage('')
     }
