@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useTitle } from '../hooks/useTitle'
-alert(process.env.SOCKET_URL)
 
 export default function Join() {
   const [name, setName] = useState('')
