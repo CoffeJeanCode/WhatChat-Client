@@ -14,7 +14,8 @@ body {
 }
 
 ::selection {
-  background: #9eff66;
+  background: var(--main);
+  background-blend-mode: lighten;
 }
 
 #root {
