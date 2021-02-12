@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const Dotenv = require('dotenv-webpack')
+const webpack = require('webpack')
 
 const mode =
   process.env.NODE_ENV === 'production' ? 'production' : 'development'
@@ -37,6 +38,9 @@ module.exports = {
       template: path.join(__dirname, 'public', 'index.html'),
     }),
     new Dotenv(),
+    new webpack.DefinePlugin({
+      SOCKET_URL: 'https://chattie-sockets.herokuapp.com/',
+    }),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
