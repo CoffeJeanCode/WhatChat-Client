@@ -36,7 +36,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'public', 'index.html'),
     }),
-    new webpack.DefinePlugin({
+    new webpack.EnvironmentPlugin({
       SOCKET_URL: 'https://chattie-sockets.herokuapp.com/',
     }),
   ],
