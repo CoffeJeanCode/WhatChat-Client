@@ -10,6 +10,7 @@ import TextContainer from '../components/TextContainer'
 
 import notification from '../assets/notification.mp3'
 import { useTitle } from '../hooks/useTitle'
+import { encrypt } from '../utils/encrypt'
 
 const ENDPOINT =
   process.env.NODE_ENV === 'development'
@@ -62,9 +63,10 @@ export default function Chat() {
 
   const sendMessage = (e) => {
     e.preventDefault()
+    const encryptedMessage = encrypt(message, room)
 
     if (message) {
-      socket.emit('sendMessage', message)
+      socket.emit('sendMessage', encryptedMessage)
       setMessage('')
     }
   }
