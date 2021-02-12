@@ -1,3 +1,7 @@
+:root {
+  --main: #009e5a;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -39,6 +43,23 @@ body {
   height: 60%;
   width: 35%;
 }
+.changeColor {
+  opacity: 0;
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+}
+
+.colorChangeWrapper {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--main);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 5px;
+}
 
 @media (min-width: 320px) and (max-width: 480px) {
   .outerContainer {
@@ -59,7 +80,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #4bcc00;
+  background: var(--main);
   border-radius: 4px 4px 0 0;
   height: 60px;
   width: 100%;
@@ -82,7 +103,7 @@ body {
   border-radius: 5px;
   background: #fff;
   padding: 5px;
-  color: #4bcc00;
+  color: var(--main);
   cursor: pointer;
 }
 .btn:hover {
@@ -124,7 +145,7 @@ select:focus {
   font-size: 2rem;
   text-transform: uppercase;
   text-decoration: none;
-  background: #4bcc00;
+  background: var(--main);
   padding: 1rem 0.5rem;
   display: inline-block;
   border: none;
@@ -159,7 +180,7 @@ select:focus {
   color: white;
   font-size: 2em;
   padding-bottom: 10px;
-  border-bottom: 2px solid white;
+  border-bottom: 3px solid var(--main);
 }
 
 .title {
@@ -171,7 +192,7 @@ select:focus {
   color: #fff !important;
   text-transform: uppercase;
   text-decoration: none;
-  background: #4bcc00;
+  background: var(--main);
   padding: 20px;
   border-radius: 5px;
   display: inline-block;
@@ -208,12 +229,12 @@ button:focus {
 }
 
 .messages div::-webkit-scrollbar-thumb {
-  background: #4bcc00;
+  background: var(--main);
 }
 
 .messageBox {
   background: #f3f3f3;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 5px 15px;
   color: white;
   display: inline-block;
@@ -272,7 +293,7 @@ button:focus {
 }
 
 .backgroundBlue {
-  background: #4bcc00;
+  background: var(--main);
 }
 
 .backgroundLight {

@@ -1,17 +1,15 @@
-import { StrictMode } from 'react';
+import { StrictMode } from 'react'
 import * as ReactDOM from 'react-dom'
-
+import { BrowserRouter as Router } from 'react-router-dom'
 import App from './App'
-
-import { StoreProvider } from './store'
 
 import './styles/index.css'
 
 ReactDOM.render(
   <StrictMode>
-    <StoreProvider>
+    <Router>
       <App />
-    </StoreProvider>
+    </Router>
   </StrictMode>,
   document.getElementById('root'),
 )

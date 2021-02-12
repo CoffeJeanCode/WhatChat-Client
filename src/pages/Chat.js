@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react'
 import queryString from 'query-string'
 import { useHistory, useLocation } from 'react-router-dom'
 import io from 'socket.io-client'
@@ -56,6 +56,7 @@ export default function Chat() {
     socket.on('roomData', ({ users }) => {
       setUsers(users)
     })
+    return () => notificationRef.current && notificationRef.current.destroy()
   }, [])
 
   const sendMessage = (e) => {
@@ -69,18 +70,20 @@ export default function Chat() {
   }
 
   return (
-    <div className="outerContainer">
-      <div className="container">
-        <InfoBar room={room} socket={socket} />
-        <Messages messages={messages} name={name} />
-        <Input
-          message={message}
-          setMessage={setMessage}
-          sendMessage={sendMessage}
-        />
-        <audio ref={notificationRef} src={notification}></audio>
+    <>
+      <audio ref={notificationRef} src={notification}></audio>
+      <div className="outerContainer">
+        <div className="container">
+          <InfoBar room={room} socket={socket} />
+          <Messages messages={messages} name={name} />
+          <Input
+            message={message}
+            setMessage={setMessage}
+            sendMessage={sendMessage}
+          />
+        </div>
+        <TextContainer users={users}></TextContainer>
       </div>
-      <TextContainer users={users}></TextContainer>
-    </div>
+    </>
   )
 }
