@@ -37,13 +37,19 @@ module.exports = {
       template: path.join(__dirname, 'public', 'index.html'),
     }),
     new webpack.EnvironmentPlugin({
-      SOCKET_URL: 'https://chattie-sockets.herokuapp.com/',
+      // SOCKET_URL: 'https://chattie-sockets.herokuapp.com/',
+      SOCKET_URL: 'http://localhost:4000/',
     }),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 3000,
+  },
+  resolve: {
+    fallback: {
+      crypto: require.resolve('crypto-js'),
+    },
   },
   optimization: {
     removeAvailableModules: false,
