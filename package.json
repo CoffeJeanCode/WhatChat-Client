@@ -26,6 +26,7 @@
     "@testing-library/react": "^11.0.0",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.0.1",
+    "dotenv-webpack": "^6.0.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.0.0",
     "prettier": "^2.0.5",
