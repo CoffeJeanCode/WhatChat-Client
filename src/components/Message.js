@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo } from 'react';
 import ReactEmoji from 'react-emoji'
 
 function Message({ message: { user, text }, name }) {
@@ -27,4 +27,4 @@ function Message({ message: { user, text }, name }) {
   )
 }
 
-export default React.memo(Message, () => true)
+export default memo(Message, () => true)

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom'
 
 import App from './App'
@@ -8,11 +8,11 @@ import { StoreProvider } from './store'
 import './styles/index.css'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <StrictMode>
     <StoreProvider>
       <App />
     </StoreProvider>
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById('root'),
 )
 

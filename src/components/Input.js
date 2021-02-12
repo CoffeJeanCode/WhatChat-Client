@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { memo } from 'react';
 
 function Input({ message, setMessage, sendMessage }) {
   const handleMessageValue = ({ target: { value } }) => setMessage(value)
@@ -24,7 +24,7 @@ function Input({ message, setMessage, sendMessage }) {
   )
 }
 
-export default React.memo(
+export default memo(
   Input,
   (preProps, nextProps) => preProps === nextProps,
 )

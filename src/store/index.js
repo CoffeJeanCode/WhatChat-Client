@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { createContext, useContext, useReducer } from 'react';
 
 const intialState = {
   sockets: null,
@@ -12,11 +12,11 @@ const reducer = (state = intialState, action) => {
   }
 }
 
-const Store = React.createContext({})
+const Store = createContext({})
 
-export const useStore = () => React.useContext(Store)
+export const useStore = () => useContext(Store)
 
 export const StoreProvider = ({ children }) => {
-  const store = React.useReducer(reducer, intialState)
+  const store = useReducer(reducer, intialState)
   return <Store.Provider value={store}>{children}</Store.Provider>
 }

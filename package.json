@@ -20,6 +20,7 @@
   "devDependencies": {
     "@babel/cli": "^7.12.13",
     "@babel/core": "^7.12.13",
+    "@babel/plugin-transform-react-jsx": "^7.12.16",
     "@babel/preset-env": "^7.12.13",
     "@babel/preset-react": "^7.12.13",
     "@testing-library/react": "^11.0.0",

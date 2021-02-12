@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { useEffect, memo } from 'react';
 import Icon from './Icons/Icons'
 import Clipboard from 'clipboard'
 
@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 function InfoBar({ room, socket }) {
   const history = useHistory()
 
-  React.useEffect(() => {
+  useEffect(() => {
     const clip = new Clipboard('.btn')
 
     return () => clip.destroy()
@@ -38,4 +38,4 @@ function InfoBar({ room, socket }) {
   )
 }
 
-export default React.memo(InfoBar)
+export default memo(InfoBar)

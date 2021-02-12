@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { memo } from 'react';
 import Icon from './Icons/Icons'
 
 const TextContainer = ({ users }) => (
@@ -23,7 +23,7 @@ const TextContainer = ({ users }) => (
   </>
 )
 
-export default React.memo(
+export default memo(
   TextContainer,
   (prevProps, nextProps) => prevProps === nextProps,
 )

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { useState, useRef, useEffect } from 'react';
 import queryString from 'query-string'
 import { useHistory, useLocation } from 'react-router-dom'
 import io from 'socket.io-client'
@@ -15,20 +15,20 @@ import { encrypt } from '../utils/encrypt'
 const ENDPOINT = process.env.SOCKET_URL
 
 export default function Chat() {
-  const [name, setName] = React.useState('')
-  const [room, setRoom] = React.useState('')
-  const [message, setMessage] = React.useState('')
-  const [users, setUsers] = React.useState([])
-  const [messages, setMessages] = React.useState([])
-  const [socket] = React.useState(() => io(ENDPOINT))
-  const notificationRef = React.useRef(null)
+  const [name, setName] = useState('')
+  const [room, setRoom] = useState('')
+  const [message, setMessage] = useState('')
+  const [users, setUsers] = useState([])
+  const [messages, setMessages] = useState([])
+  const [socket] = useState(() => io(ENDPOINT))
+  const notificationRef = useRef(null)
   const history = useHistory()
   const { search } = useLocation()
   const queryParams = queryString.parse(search)
 
   useTitle(`${room.toLocaleLowerCase()} | WhatChat`)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const { room, name } = queryParams
 
     setRoom(room)
