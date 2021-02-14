@@ -33,6 +33,7 @@ export default function Join() {
               required
               type="text"
               placeholder="Name"
+              maxLength="20"
               className="joinInput"
               onChange={handleChangeName}
             />
@@ -41,6 +42,7 @@ export default function Join() {
             <input
               required
               type="text"
+              maxLength="20"
               placeholder="Room"
               className="joinInput mt-20"
               onChange={handleChangeRoom}

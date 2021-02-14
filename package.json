@@ -15,6 +15,7 @@
     "react-emoji": "^0.5.0",
     "react-router-dom": "^5.2.0",
     "react-scroll-to-bottom": "^3.0.0",
+    "remarkable": "^2.0.1",
     "socket.io-client": "^2.3.0"
   },
   "devDependencies": {

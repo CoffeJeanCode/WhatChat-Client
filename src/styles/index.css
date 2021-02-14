@@ -247,7 +247,17 @@ button:focus {
   letter-spacing: 0;
   float: left;
   font-size: 1.1em;
+  text-decoration: none;
+  color: #f3f3f3;
+
   word-wrap: break-word;
+}
+a.messageText {
+  color: #d3d3d3;
+}
+
+a.messageText:hover {
+  text-decoration: underline;
 }
 
 .messageText img {
@@ -267,6 +277,7 @@ button:focus {
   font-family: Helvetica;
   color: #828282;
   letter-spacing: 0.3px;
+  overflow: hidden;
 }
 
 .pl-10 {
