@@ -62,6 +62,8 @@ export default function Chat() {
   const sendMessage = (e) => {
     e.preventDefault()
 
+    Date.now()
+
     if (message) {
       const encryptedMessage = encrypt(message, room.toLowerCase().trim())
       socket.emit('sendMessage', encryptedMessage)

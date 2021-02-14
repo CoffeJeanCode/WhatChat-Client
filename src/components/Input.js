@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo } from 'react'
 
 function Input({ message, setMessage, sendMessage }) {
   const handleMessageValue = ({ target: { value } }) => setMessage(value)
@@ -13,6 +13,7 @@ function Input({ message, setMessage, sendMessage }) {
       <input
         className="input"
         type="text"
+        multiple
         value={message}
         onChange={handleMessageValue}
         autoFocus
@@ -24,7 +25,4 @@ function Input({ message, setMessage, sendMessage }) {
   )
 }
 
-export default memo(
-  Input,
-  (preProps, nextProps) => preProps === nextProps,
-)
+export default memo(Input, (preProps, nextProps) => preProps === nextProps)

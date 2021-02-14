@@ -23,7 +23,7 @@ function Message({ message: { user, text }, name }) {
       <div className="messageBox backgroundBlue">
         {matchUrl ? (
           <a
-            className="messageText"
+            className="messageText link"
             rel="noreferrer nofollow"
             target="_blank"
             href={text}

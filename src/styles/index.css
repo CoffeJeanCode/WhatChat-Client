@@ -99,6 +99,10 @@ body {
   margin: 0 0.5rem;
 }
 
+.icon {
+  display: flex;
+}
+
 .btn {
   border: none;
   border-radius: 5px;
@@ -128,6 +132,7 @@ body {
 }
 
 .input {
+  overflow: hidden;
   border: none;
   border-radius: 0;
   padding: 0.5rem;
@@ -154,7 +159,7 @@ select:focus {
   cursor: pointer;
 }
 .sendButton:hover {
-  background: #1c4d00;
+  background: var(--main);
 }
 
 .joinOuterContainer {
@@ -249,7 +254,7 @@ button:focus {
   font-size: 1.1em;
   text-decoration: none;
   color: #f3f3f3;
-
+  margin: 0;
   word-wrap: break-word;
 }
 a.messageText {
@@ -299,7 +304,9 @@ a.messageText:hover {
 .colorWhite {
   color: white;
 }
-
+.messageText.colorDark {
+  color: #353535;
+}
 .colorDark {
   color: #353535;
 }
