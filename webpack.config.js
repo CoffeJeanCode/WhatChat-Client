@@ -1,6 +1,6 @@
+const DotenvWebpackPlugin = require('dotenv-webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
-const webpack = require('webpack')
 
 const mode =
   process.env.NODE_ENV === 'production' ? 'production' : 'development'
@@ -10,6 +10,7 @@ module.exports = {
     index: path.join(__dirname, 'src', 'index.js'),
   },
   output: {
+    publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
@@ -36,14 +37,16 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'public', 'index.html'),
     }),
-    new webpack.EnvironmentPlugin({
-      SOCKET_URL: 'https://chattie-sockets.herokuapp.com/',
-    }),
+    new DotenvWebpackPlugin(),
   ],
   devServer: {
+    index: path.join(__dirname, 'dist', 'index.html'),
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 3000,
+    historyApiFallback: {
+      index: 'index.html',
+    },
   },
   resolve: {
     fallback: {
