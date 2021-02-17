@@ -1,6 +1,7 @@
 const DotenvWebpackPlugin = require('dotenv-webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 
 const mode =
   process.env.NODE_ENV === 'production' ? 'production' : 'development'
@@ -23,9 +24,9 @@ module.exports = {
         use: ['babel-loader'],
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|jpe?g|gif|mp3|svg)$/i,
@@ -38,6 +39,7 @@ module.exports = {
       template: path.join(__dirname, 'public', 'index.html'),
     }),
     new DotenvWebpackPlugin(),
+    new MiniCSSExtractPlugin(),
   ],
   devServer: {
     index: path.join(__dirname, 'dist', 'index.html'),

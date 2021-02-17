@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 import App from './App'
 
-import './styles/index.css'
+import './styles/index.scss'
 
 ReactDOM.render(
   <StrictMode>
@@ -13,7 +13,3 @@ ReactDOM.render(
   </StrictMode>,
   document.getElementById('root'),
 )
-
-if (import.meta.hot) {
-  import.meta.hot.accept()
-}
