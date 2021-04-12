@@ -9,6 +9,7 @@
   "dependencies": {
     "clipboard": "^2.0.6",
     "crypto-js": "^4.0.0",
+    "immutable": "^4.0.0-rc.12",
     "query-string": "^6.13.8",
     "ramda": "^0.27.1",
     "react": "^17.0.0",

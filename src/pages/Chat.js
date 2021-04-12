@@ -1,14 +1,12 @@
-import { useState, useRef, useEffect } from 'react'
 import queryString from 'query-string'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
 import io from 'socket.io-client'
-
+import notification from '../assets/notification.mp3'
 import InfoBar from '../components/InfoBar'
 import Input from '../components/Input'
 import Messages from '../components/Messages'
 import TextContainer from '../components/TextContainer'
-
-import notification from '../assets/notification.mp3'
+import { useRouter } from '../hooks/useRouter'
 import { useTitle } from '../hooks/useTitle'
 import { encrypt } from '../utils/encrypt'
 
@@ -22,11 +20,11 @@ export default function Chat() {
   const [messages, setMessages] = useState([])
   const [socket] = useState(() => io(ENDPOINT))
   const notificationRef = useRef(null)
-  const history = useHistory()
-  const { search } = useLocation()
-  const queryParams = queryString.parse(search)
+  const { search, push: pushHistory } = useRouter()
+  const [messagesIds, setMessagesIds] = useState()
 
-  useTitle(`${room.toLocaleLowerCase()} | WhatChat`)
+  const queryParams = queryString.parse(search)
+  useTitle(`${room.toLowerCase()} | WhatChat`)
 
   useEffect(() => {
     const { room, name } = queryParams
@@ -37,13 +35,14 @@ export default function Chat() {
     socket.emit('join', { name, room }, (error) => {
       if (error) {
         alert(error)
-        history.push('/')
+        pushHistory('/')
       }
     })
     notificationRef.current.volume = 50 / 100
 
     socket.on('message', (message) => {
       setMessages((messages) => [...messages, message])
+      setMessagesIds(messages.map((message) => message.id))
 
       const { user } = message
       const trimedName = name.trim().toLowerCase()
@@ -77,7 +76,7 @@ export default function Chat() {
       <div className="outerContainer">
         <div className="container">
           <InfoBar room={room} socket={socket} />
-          <Messages messages={messages} name={name} />
+          <Messages messagesIds={messagesIds} messages={messages} name={name} />
           <Input
             message={message}
             setMessage={setMessage}

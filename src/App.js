@@ -9,6 +9,7 @@ const Chat = lazy(() => import('./pages/Chat'))
 function App() {
   const [color, setColor] = useLocalStorage('color', '#009e5a')
   const location = useLocation()
+
   useEffect(() => {
     document.documentElement.style.setProperty('--main', color)
   }, [color])

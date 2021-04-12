@@ -16,6 +16,7 @@ function Input({ message, setMessage, sendMessage }) {
         multiple
         value={message}
         onChange={handleMessageValue}
+        placeholder="Write a message..."
         autoFocus
       />
       <button className="sendButton">

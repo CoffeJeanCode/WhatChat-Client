@@ -18,11 +18,11 @@ export const useMediaQuery = (mediaQuery) => {
     const mediaQueryList = window.matchMedia(mediaQuery)
     const documentChangeHandler = () => setIsVerified(!!mediaQueryList.matches)
 
-    mediaQueryList.addListener(documentChangeHandler)
+    mediaQueryList.addEventListener('change', documentChangeHandler)
 
     documentChangeHandler()
     return () => {
-      mediaQueryList.removeListener(documentChangeHandler)
+      mediaQueryList.removeEventListener('change', documentChangeHandler)
     }
   }, [mediaQuery])
 

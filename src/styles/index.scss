@@ -13,8 +13,10 @@ body {
   max-width: 100vw;
 }
 
+$main: #3333;
+
 ::selection {
-  background: var(--main);
+  background: lighten($main, 10);
   background-blend-mode: lighten;
 }
 
@@ -385,17 +387,5 @@ a.messageText:hover {
 @media screen and (max-width: 480px) {
   .textContainer {
     display: none;
-  }
-}
-
-@keyframes lds-facebook {
-  0% {
-    top: 8px;
-    height: 64px;
-  }
-  50%,
-  100% {
-    top: 24px;
-    height: 32px;
   }
 }
